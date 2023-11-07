@@ -1,0 +1,96 @@
+{
+   "library" : {
+      "annotation" : [ {
+         "translatorVersion" : "2.2.0-SNAPSHOT",
+         "translatorOptions" : "",
+         "type" : "CqlToElmInfo"
+      } ],
+      "identifier" : {
+         "id" : "simpleLibraryUnitTest",
+         "version" : "0.0.1"
+      },
+      "schemaIdentifier" : {
+         "id" : "urn:hl7-org:elm",
+         "version" : "r1"
+      },
+      "usings" : {
+         "def" : [ {
+            "localIdentifier" : "System",
+            "uri" : "urn:hl7-org:elm-types:r1"
+         }, {
+            "localIdentifier" : "FHIR",
+            "uri" : "http://hl7.org/fhir",
+            "version" : "4.0.1"
+         } ]
+      },
+      "includes" : {
+         "def" : [ {
+            "localIdentifier" : "simple",
+            "path" : "simpleLibrary"
+         } ]
+      },
+      "contexts" : {
+         "def" : [ {
+            "name" : "Patient"
+         } ]
+      },
+      "statements" : {
+         "def" : [ {
+            "name" : "Patient",
+            "context" : "Patient",
+            "expression" : {
+               "type" : "SingletonFrom",
+               "operand" : {
+                  "dataType" : "{http://hl7.org/fhir}Patient",
+                  "templateId" : "http://hl7.org/fhir/StructureDefinition/Patient",
+                  "type" : "Retrieve"
+               }
+            }
+         }, {
+            "name" : "is older",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "annotation" : [ {
+               "type" : "Annotation",
+               "t" : [ {
+                  "name" : "test"
+               }, {
+                  "name" : "data",
+                  "value" : "older"
+               } ]
+            } ],
+            "expression" : {
+               "name" : "Is over 70",
+               "libraryName" : "simple",
+               "type" : "ExpressionRef"
+            }
+         }, {
+            "name" : "is younger",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "annotation" : [ {
+               "type" : "Annotation",
+               "t" : [ {
+                  "name" : "test"
+               }, {
+                  "name" : "data",
+                  "value" : "younger"
+               } ]
+            } ],
+            "expression" : {
+               "type" : "Equal",
+               "operand" : [ {
+                  "name" : "Is over 70",
+                  "libraryName" : "simple",
+                  "type" : "ExpressionRef"
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "false",
+                  "type" : "Literal"
+               } ]
+            }
+         } ]
+      }
+   }
+}
+
