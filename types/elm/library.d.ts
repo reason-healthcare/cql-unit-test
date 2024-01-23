@@ -45,9 +45,9 @@ export class Library extends Element {
 }
 
 export class VersionedIdentifier {
-    public $id: string;
-    public $system: string;
-    public $version: string;
+    public id: string;
+    public system: string;
+    public version: string;
 
     public constructor(props?: VersionedIdentifier) {
         this["@class"] = ".VersionedIdentifier";
@@ -55,9 +55,9 @@ export class VersionedIdentifier {
 
         if (props) {
 
-        	this.$id = props.$id;
-        	this.$system = props.$system;
-        	this.$version = props.$version;
+        	this.$id = props.id;
+        	this.$system = props.system;
+        	this.$version = props.version;
         }
     }
 }

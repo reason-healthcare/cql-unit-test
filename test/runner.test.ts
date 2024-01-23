@@ -1,3 +1,5 @@
+import test, { describe } from 'node:test'
+import assert from 'node:assert'
 import path from 'path'
 import fs from 'fs'
 import { Library } from '../types/elm/library'
@@ -108,7 +110,7 @@ describe('Unit Test', () => {
           test(`"${def}" is true for ${patient.id}`, () => {
             if (patient.id) {
               const value = cqlResults[patient.id][def]
-              expect(value).toEqual(true)
+              assert.equal(value, true)
             }
           })
         })
